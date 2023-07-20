@@ -24,9 +24,13 @@ SECRET_KEY = 'django-insecure-=(2o3n*lupnki*x1sd3uwlx^!dcb__ov+2ugczw0v7&$%9f+c9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG = False # production
 
 ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*'] # production
+'''
+The ALLOWED_HOSTS settings represent which host/domain names our Django site can serve. This is a security measure to prevent HTTP Host header attacks. We used the asterisk (*) wildcard to indicate that all domains are acceptable. In your production projects, you can explicitly list which domains are allowed.
+'''
 
 # Application definition
 
@@ -119,6 +123,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR,'static') # production: defines a central location into which we collect all static files.
+# then run python manage.py collectstatic in host
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

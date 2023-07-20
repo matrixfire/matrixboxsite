@@ -26,6 +26,10 @@ def detail(request, movie_id):
     return render(request, 'detail.html', 
                   {'movie':movie, 'reviews': reviews})
 
+def tools(request):
+    return render(request, 'tools.html')
+
+
 @login_required
 def createreview(request, movie_id):   
     movie = get_object_or_404(Movie,pk=movie_id) 

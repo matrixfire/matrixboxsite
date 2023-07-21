@@ -24,6 +24,9 @@ SECRET_KEY = 'django-insecure-=(2o3n*lupnki*x1sd3uwlx^!dcb__ov+2ugczw0v7&$%9f+c9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
+DEBUG = True
+# DEBUG = False # production
+
 # -----------------------------------------------------------
 DEBUG = True
 # DEBUG = False # when deployed for safty reasons....
@@ -31,6 +34,7 @@ DEBUG = True
 # -----------------------------------------------------------
 # -----------------------------------------------------------
 ALLOWED_HOSTS = []
+
 ALLOWED_HOSTS = ['*']  # when deployed
 '''
 The ALLOWED_HOSTS settings represent which host/domain names our Django site can serve. This is a security measure to prevent HTTP Host header attacks.
@@ -134,6 +138,7 @@ USE_TZ = True
 
 # -----------------------------------------------------------
 STATIC_URL = 'static/'
+
 
 # STATIC_ROOT = os.path.join(BASE_DIR,'static')
 '''

@@ -174,4 +174,16 @@ function clearText() {
       alert("No email addresses found.");
     }
   }
+
+
+  function supperExtractFromPaste() {
+    // Access the clipboard data and extract the text
+    navigator.clipboard.readText().then(text => {
+      document.getElementById("textInput").value = text;
+      extractAndCopyEmails();
+    }).catch(err => {
+      alert("Failed to read clipboard data.");
+    });
+    document.getElementById("textInput").value = '';
+  }
   

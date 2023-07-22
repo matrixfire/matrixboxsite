@@ -18,32 +18,6 @@
 
 
 
-function extractAndCopyEmails() {
-  const textInput = document.getElementById("textInput").value;
-  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-  const emails = textInput.match(emailRegex);
-
-  if (emails && emails.length > 0) {
-    // Remove duplicate emails using Set
-    const uniqueEmails = Array.from(new Set(emails));
-
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "<h3>Email Addresses:</h3>";
-    uniqueEmails.forEach(email => {
-      resultDiv.innerHTML += `<p>${email}</p>`;
-    });
-
-    // Copy the emails to the clipboard
-    const copiedText = uniqueEmails.join("\n");
-    copyToClipboard(copiedText);
-
-    // Show success message
-    resultDiv.innerHTML += "<p>Emails copied to clipboard!</p>";
-  } else {
-    alert("No email addresses found.");
-  }
-}
-
 
 function clearText() {
     document.getElementById("textInput").value = "";
@@ -117,7 +91,7 @@ function clearText() {
       const uniqueLowercaseEmails = Array.from(new Set(emails.map(email => email.toLowerCase())));
   
       const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = "<h3>Email Addresses:</h3>";
+      resultDiv.innerHTML = `<h3>Email Addresses(Found: ${emails.length}):</h3>`;
       uniqueLowercaseEmails.forEach(email => {
         resultDiv.innerHTML += `<p>${email}</p>`;
       });
@@ -142,7 +116,7 @@ function clearText() {
     if (emails && emails.length > 0) {
       const uniqueEmails = Array.from(new Set(emails));
       const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = "<h3>Email Addresses:</h3>";
+      resultDiv.innerHTML = `<h3>Email Addresses(Found: {uniqueEmails.length}):</h3>`;
   
       // Copy only the emails with names (not "Unknown" names)
       const copiedText = uniqueEmails.reduce((acc, email) => {
@@ -173,5 +147,17 @@ function clearText() {
     } else {
       alert("No email addresses found.");
     }
+  }
+
+
+  function supperExtractFromPaste() {
+    // Access the clipboard data and extract the text
+    navigator.clipboard.readText().then(text => {
+      document.getElementById("textInput").value = text;
+      extractAndCopyEmails();
+    }).catch(err => {
+      alert("Failed to read clipboard data.");
+    });
+    document.getElementById("textInput").value = '';
   }
   

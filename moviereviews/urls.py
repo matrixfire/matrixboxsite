@@ -30,6 +30,7 @@ urlpatterns = [
     path('movie/', include('movie.urls')),
     path('accounts/', include('accounts.urls')),
     path('tools/', movieViews.tools, name='tools'),
+    path('info/', include('info_app.urls', namespace='info_app')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, 
